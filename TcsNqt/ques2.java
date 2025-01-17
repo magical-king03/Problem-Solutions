@@ -37,6 +37,7 @@ public class ques2 {
             }
             System.out.println();
         }
+        sc.close();
     }
 }
 

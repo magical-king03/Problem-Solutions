@@ -5,7 +5,7 @@ public class DNAStorage {
         int t = scanner.nextInt();
 
         while (t-- > 0) {
-            int n = scanner.nextInt();
+            // int n = scanner.nextInt();
             String s = scanner.next();
 
             // Your code goes here
@@ -26,5 +26,6 @@ public class DNAStorage {
             }
             System.out.println(ans);
         }
+        scanner.close();
     }    
 }

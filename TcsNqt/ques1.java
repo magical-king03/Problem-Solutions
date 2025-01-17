@@ -27,5 +27,6 @@ class ques1 {
         }else{
             System.out.println(even * x);
         }
+        sc.close();
     }
 }

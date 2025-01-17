@@ -20,5 +20,6 @@ public class Wordle {
             }
             System.out.println(m);
         }
+        sc.close();
     }
 }
