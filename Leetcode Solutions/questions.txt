@@ -1,0 +1,176 @@
+1. You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1. If a string is longer than the other, append the additional letters onto the end of the merged string. Return the merged string.
+Input: word1 = "abc", word2 = "pqr"
+Output: "apbqcr"
+
+2. For two strings s and t, we say "t divides s" if and only if s = t + t + t + ... + t + t (i.e., t is concatenated with itself one or more times). Given two strings str1 and str2, return the largest string x such that x divides both str1 and str2.
+Input: str1 = "ABCABC", str2 = "ABC"
+Output: "ABC"
+
+3. There are n kids with candies. You are given an integer array candies, where each candies[i] represents the number of candies the ith kid has, and an integer extraCandies, denoting the number of extra candies that you have. Return a boolean array result of length n, where result[i] is true if, after giving the ith kid all the extraCandies, they will have the greatest number of candies among all the kids, or false otherwise. Note that multiple kids can have the greatest number of candies.
+Input: candies = [2,3,5,1,3], extraCandies = 3
+Output: [true,true,true,false,true] 
+Explanation: If you give all extraCandies to:
+- Kid 1, they will have 2 + 3 = 5 candies, which is the greatest among the kids.
+- Kid 2, they will have 3 + 3 = 6 candies, which is the greatest among the kids.
+- Kid 3, they will have 5 + 3 = 8 candies, which is the greatest among the kids.
+- Kid 4, they will have 1 + 3 = 4 candies, which is not the greatest among the kids.
+- Kid 5, they will have 3 + 3 = 6 candies, which is the greatest among the kids.
+
+4. You have a long flowerbed in which some of the plots are planted, and some are not. However, flowers cannot be planted in adjacent plots. Given an integer array flowerbed containing 0's and 1's, where 0 means empty and 1 means not empty, and an integer n, return true if n new flowers can be planted in the flowerbed without violating the no-adjacent-flowers rule and false otherwise.
+Input: flowerbed = [1,0,0,0,1], n = 1
+Output: true
+
+5. Given a string s, reverse only all the vowels in the string and return it. The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower and upper cases, more than once.
+Input: s = "IceCreAm"
+Output: "AceCreIm"
+
+6. Given an input string s, reverse the order of the words. A word is defined as a sequence of non-space characters. The words in s will be separated by at least one space. Return a string of the words in reverse order concatenated by a single space. Note that s may contain leading or trailing spaces or multiple spaces between two words. The returned string should only have a single space separating the words. Do not include any extra spaces.
+Input: s = "the sky is blue"
+Output: "blue is sky the"
+
+7. Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i]. The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer. You must write an algorithm that runs in O(n) time and without using the division operation.
+Input: nums = [1,2,3,4]
+Output: [24,12,8,6]
+
+8. Given an integer array nums, return true if there exists a triple of indices (i, j, k) such that i < j < k and nums[i] < nums[j] < nums[k]. If no such indices exists, return false.
+Input: nums = [1,2,3,4,5]
+Output: true
+Explanation: Any triplet where i < j < k is valid.
+
+9. Given an array of characters chars, compress it using the following algorithm:
+Begin with an empty string s. For each group of consecutive repeating characters in chars:
+If the group's length is 1, append the character to s. 
+Otherwise, append the character followed by the group's length.
+The compressed string s should not be returned separately, but instead, be stored in the input character array chars. Note that group lengths that are 10 or longer will be split into multiple characters in chars.
+After you are done modifying the input array, return the new length of the array. You must write an algorithm that uses only constant extra space.
+Input: chars = ["a","a","b","b","c","c","c"]
+Output: Return 6, and the first 6 characters of the input array should be: ["a","2","b","2","c","3"]
+Explanation: The groups are "aa", "bb", and "ccc". This compresses to "a2b2c3".
+
+10. There is a biker going on a road trip. The road trip consists of n + 1 points at different altitudes. The biker starts his trip on point 0 with altitude equal 0. You are given an integer array gain of length n where gain[i] is the net gain in altitude between points i​​​​​​ and i + 1 for all (0 <= i < n). Return the highest altitude of a point.
+Input: gain = [-5,1,5,0,-7]
+Output: 1
+Explanation: The altitudes are [0,-5,-4,1,1,-6]. The highest is 1.
+
+11. Given an array of integers nums, calculate the pivot index of this array. The pivot index is the index where the sum of all the numbers strictly to the left of the index is equal to the sum of all the numbers strictly to the index's right. If the index is on the left edge of the array, then the left sum is 0 because there are no elements to the left. This also applies to the right edge of the array. Return the leftmost pivot index. If no such index exists, return -1.
+Input: nums = [1,7,3,6,5,6]
+Output: 3
+Explanation:
+The pivot index is 3.
+Left sum = nums[0] + nums[1] + nums[2] = 1 + 7 + 3 = 11
+Right sum = nums[4] + nums[5] = 5 + 6 = 11
+
+12. You are given the head of a linked list. Delete the middle node, and return the head of the modified linked list. The middle node of a linked list of size n is the ⌊n / 2⌋th node from the start using 0-based indexing, where ⌊x⌋ denotes the largest integer less than or equal to x. For n = 1, 2, 3, 4, and 5, the middle nodes are 0, 1, 1, 2, and 2, respectively.
+Input: head = [1,3,4,7,1,2,6]
+Output: [1,3,4,1,2,6]
+Explanation:
+The above figure represents the given linked list. The indices of the nodes are written below.
+Since n = 7, node 3 with value 7 is the middle node, which is marked in red.
+We return the new list after removing this node. 
+
+13. Given the head of a singly linked list, group all the nodes with odd indices together followed by the nodes with even indices, and return the reordered list. The first node is considered odd, and the second node is even, and so on. Note that the relative order inside both the even and odd groups should remain as it was in the input. You must solve the problem in O(1) extra space complexity and O(n) time complexity.
+Input: head = [1,2,3,4,5]
+Output: [1,3,5,2,4]
+
+14. Given the head of a singly linked list, reverse the list, and return the reversed list.
+Input: head = [1,2,3,4,5]
+Output: [5,4,3,2,1]
+
+15. In a linked list of size n, where n is even, the ith node (0-indexed) of the linked list is known as the twin of the (n-1-i)th node, if 0 <= i <= (n / 2) - 1. For example, if n = 4, then node 0 is the twin of node 3, and node 1 is the twin of node 2. These are the only nodes with twins for n = 4. The twin sum is defined as the sum of a node and its twin. Given the head of a linked list with even length, return the maximum twin sum of the linked list.
+Input: head = [5,4,2,1]
+Output: 6
+Explanation:
+Nodes 0 and 1 are the twins of nodes 3 and 2, respectively. All have twin sum = 6.
+There are no other nodes with twins in the linked list.
+Thus, the maximum twin sum of the linked list is 6.
+
+16. Given an integer array nums and an integer k, return the kth largest element in the array. Note that it is the kth largest element in the sorted order, not the kth distinct element. Can you solve it without sorting?
+Input: nums = [3,2,1,5,6,4], k = 2
+Output: 5
+
+17. You are given two 0-indexed integer arrays nums1 and nums2 of equal length n and a positive integer k. You must choose a subsequence of indices from nums1 of length k. 
+For chosen indices i0, i1, ..., ik - 1, your score is defined as:
+The sum of the selected elements from nums1 multiplied with the minimum of the selected elements from nums2.
+It can defined simply as: (nums1[i0] + nums1[i1] +...+ nums1[ik - 1]) * min(nums2[i0] , nums2[i1], ... ,nums2[ik - 1]).
+Return the maximum possible score.
+A subsequence of indices of an array is a set that can be derived from the set {0, 1, ..., n-1} by deleting some or no elements.
+Input: nums1 = [1,3,3,2], nums2 = [2,1,3,4], k = 3
+Output: 12
+Explanation: 
+The four possible subsequence scores are:
+- We choose the indices 0, 1, and 2 with score = (1+3+3) * min(2,1,3) = 7.
+- We choose the indices 0, 1, and 3 with score = (1+3+2) * min(2,1,4) = 6. 
+- We choose the indices 0, 2, and 3 with score = (1+3+2) * min(2,3,4) = 12. 
+- We choose the indices 1, 2, and 3 with score = (3+3+2) * min(1,3,4) = 8.
+Therefore, we return the max score, which is 12.
+
+18. You are given a 0-indexed integer array costs where costs[i] is the cost of hiring the ith worker.
+You are also given two integers k and candidates. We want to hire exactly k workers according to the following rules:
+You will run k sessions and hire exactly one worker in each session.
+In each hiring session, choose the worker with the lowest cost from either the first candidates workers or the last candidates workers. Break the tie by the smallest index.
+For example, if costs = [3,2,7,7,1,2] and candidates = 2, then in the first hiring session, we will choose the 4th worker because they have the lowest cost [3,2,7,7,1,2].
+In the second hiring session, we will choose 1st worker because they have the same lowest cost as 4th worker but they have the smallest index [3,2,7,7,2]. Please note that the indexing may be changed in the process.
+If there are fewer than candidates workers remaining, choose the worker with the lowest cost among them. Break the tie by the smallest index.
+A worker can only be chosen once. Return the total cost to hire exactly k workers.
+Input: costs = [17,12,10,2,7,2,11,20,8], k = 3, candidates = 4
+Output: 11
+Explanation: We hire 3 workers in total. The total cost is initially 0.
+- In the first hiring round we choose the worker from [17,12,10,2,7,2,11,20,8]. The lowest cost is 2, and we break the tie by the smallest index, which is 3. The total cost = 0 + 2 = 2.
+- In the second hiring round we choose the worker from [17,12,10,7,2,11,20,8]. The lowest cost is 2 (index 4). The total cost = 2 + 2 = 4.
+- In the third hiring round we choose the worker from [17,12,10,7,11,20,8]. The lowest cost is 7 (index 3). The total cost = 4 + 7 = 11. Notice that the worker with index 3 was common in the first and last four workers.
+The total hiring cost is 11.
+
+19. Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements. Note that you must do this in-place without making a copy of the array.
+Input: nums = [0,1,0,3,12]
+Output: [1,3,12,0,0]
+
+20. Given two strings s and t, return true if s is a subsequence of t, or false otherwise. A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., "ace" is a subsequence of "abcde" while "aec" is not).
+Input: s = "abc", t = "ahbgdc"
+Output: true
+
+21. You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]). Find two lines that together with the x-axis form a container, such that the container contains the most water. Return the maximum amount of water a container can store. Notice that you may not slant the container.
+Input: height = [1,8,6,2,5,4,8,3,7]
+Output: 49
+Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
+
+22. You are given an integer array nums and an integer k. In one operation, you can pick two numbers from the array whose sum equals k and remove them from the array. Return the maximum number of operations you can perform on the array.
+Input: nums = [1,2,3,4], k = 5
+Output: 2
+Explanation: Starting with nums = [1,2,3,4]:
+- Remove numbers 1 and 4, then nums = [2,3]
+- Remove numbers 2 and 3, then nums = []
+There are no more pairs that sum up to 5, hence a total of 2 operations.
+
+23. Given two 0-indexed integer arrays nums1 and nums2, return a list answer of size 2 where:
+answer[0] is a list of all distinct integers in nums1 which are not present in nums2.
+answer[1] is a list of all distinct integers in nums2 which are not present in nums1.
+Note that the integers in the lists may be returned in any order.
+Input: nums1 = [1,2,3], nums2 = [2,4,6]
+Output: [[1,3],[4,6]]
+Explanation:
+For nums1, nums1[1] = 2 is present at index 0 of nums2, whereas nums1[0] = 1 and nums1[2] = 3 are not present in nums2. Therefore, answer[0] = [1,3].
+For nums2, nums2[0] = 2 is present at index 1 of nums1, whereas nums2[1] = 4 and nums2[2] = 6 are not present in nums2. Therefore, answer[1] = [4,6].
+
+24. Given an array of integers arr, return true if the number of occurrences of each value in the array is unique or false otherwise.
+Input: arr = [1,2,2,1,1,3]
+Output: true
+Explanation: The value 1 has 3 occurrences, 2 has 2 and 3 has 1. No two values have the same number of occurrences.
+
+25. Two strings are considered close if you can attain one from the other using the following operations:
+Operation 1: Swap any two existing characters.
+For example, abcde -> aecdb
+Operation 2: Transform every occurrence of one existing character into another existing character, and do the same with the other character.
+For example, aacabb -> bbcbaa (all a's turn into b's, and all b's turn into a's)
+You can use the operations on either string as many times as necessary.
+Given two strings, word1 and word2, return true if word1 and word2 are close, and false otherwise.
+Input: word1 = "abc", word2 = "bca"
+Output: true
+Explanation: You can attain word2 from word1 in 2 operations.
+Apply Operation 1: "abc" -> "acb"
+Apply Operation 1: "acb" -> "bca"
+
+26. Given a 0-indexed n x n integer matrix grid, return the number of pairs (ri, cj) such that row ri and column cj are equal. A row and column pair is considered equal if they contain the same elements in the same order (i.e., an equal array).
+Input: grid = [[3,2,1],[1,7,6],[2,7,7]]
+Output: 1
+Explanation: There is 1 equal row and column pair:
+- (Row 2, Column 1): [2,7,7]
