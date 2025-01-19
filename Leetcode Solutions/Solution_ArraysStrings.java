@@ -592,25 +592,25 @@ public class Solution_ArraysStrings {
         return currentString.toString();
     }
 
-    public static int[] successfulPairs(int[] spells, int[] potions, int success){
+    public static int[] successfulPairs(int[] spells, int[] potions, int success) {
         int[] ans = new int[spells.length];
         // for(int i = 0;i<spells.length;i++){
-        //     int count = 0;
-        //     for(int j = 0;j<potions.length;j++){
-        //         if(spells[i] * potions[j] >= success){
-        //             count++;
-        //         }
-        //     }
-        //     ans[i] = count;
+        // int count = 0;
+        // for(int j = 0;j<potions.length;j++){
+        // if(spells[i] * potions[j] >= success){
+        // count++;
+        // }
+        // }
+        // ans[i] = count;
         // }
         Arrays.sort(potions);
-        for(int i = 0;i<spells.length;i++){
-            int left = 0,right = potions.length - 1;
+        for (int i = 0; i < spells.length; i++) {
+            int left = 0, right = potions.length - 1;
             while (left <= right) {
                 int mid = (left + right) / 2;
-                if(potions[mid] * spells[i] >= success){
+                if (potions[mid] * spells[i] >= success) {
                     right = mid - 1;
-                }else{
+                } else {
                     left = mid + 1;
                 }
             }
@@ -619,40 +619,42 @@ public class Solution_ArraysStrings {
         return ans;
     }
 
-    public static int search(int[] nums, int left, int right){
-        if(left == right) return left;
+    public static int search(int[] nums, int left, int right) {
+        if (left == right)
+            return left;
         int mid = (left + right) / 2;
-        if(nums[mid] > nums[mid + 1])
+        if (nums[mid] > nums[mid + 1])
             return search(nums, left, mid);
-        return search(nums, mid+1, right);
+        return search(nums, mid + 1, right);
     }
 
-    public static int peakElement(int[] nums){
+    public static int peakElement(int[] nums) {
         return search(nums, 0, nums.length - 1);
     }
 
-    public static int minEatingSpeed(int piles[], int h){
+    public static int minEatingSpeed(int piles[], int h) {
         int left = 1, right = 1;
-        for(int pile : piles){
+        for (int pile : piles) {
             right = Math.max(right, pile);
         }
 
         while (left < right) {
             int middle = (left + right) / 2;
             int hrSpent = 0;
-            for(int pile : piles){
-                hrSpent += Math.ceil((double)pile / middle);
+            for (int pile : piles) {
+                hrSpent += Math.ceil((double) pile / middle);
             }
-            if(hrSpent <= h){
+            if (hrSpent <= h) {
                 right = middle;
-            }else{
+            } else {
                 left = middle + 1;
             }
         }
         return right;
     }
 
-    public static void solve(String digits, ArrayList<String> answers, StringBuilder current, int index, HashMap<Character, String> dial){
+    public static void solve(String digits, ArrayList<String> answers, StringBuilder current, int index,
+            HashMap<Character, String> dial) {
         if (index == digits.length()) {
             answers.add(current.toString());
             return;
@@ -661,15 +663,15 @@ public class Solution_ArraysStrings {
         String letters = dial.get(digit);
 
         for (char letter : letters.toCharArray()) {
-            current.append(letter); 
-            solve(digits, answers, current, index + 1, dial); 
-            current.deleteCharAt(current.length() - 1); 
+            current.append(letter);
+            solve(digits, answers, current, index + 1, dial);
+            current.deleteCharAt(current.length() - 1);
         }
     }
 
-    public static ArrayList<String> letterCombination(String digits){
+    public static ArrayList<String> letterCombination(String digits) {
         ArrayList<String> ans = new ArrayList<>();
-        if(digits.length() == 0){
+        if (digits.length() == 0) {
             return ans;
         }
         HashMap<Character, String> dial = new HashMap<>();
@@ -703,6 +705,61 @@ public class Solution_ArraysStrings {
 
     public static int minFlips(int a, int b, int c) {
         return Integer.bitCount((a | b) ^ c) + Integer.bitCount(a & b & ((a | b) ^ c));
+    }
+
+    public static void solve(int n, int k, int index, ArrayList<Integer> ans, ArrayList<ArrayList<Integer>> res) {
+        if (ans.size() == k) {
+            res.add(new ArrayList<>(ans));
+            return;
+        }
+        for (int i = index; i <= n; i++) {
+            ans.add(i);
+            solve(n, k, index + 1, ans, res);
+            ans.remove(ans.size() - 1);
+        }
+    }
+
+    public static ArrayList<ArrayList<Integer>> combinations(int n, int k) {
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        solve(n, k, 1, new ArrayList<>(), res);
+        return res;
+    }
+
+    public static void solve(ArrayList<ArrayList<Integer>> res, ArrayList<Integer> ans, int n, int k, int index) {
+        if (n == 0 && ans.size() == k) {
+            res.add(new ArrayList<>(ans));
+            return;
+        }
+        for (int i = index; i <= 9; i++) {
+            ans.add(i);
+            solve(res, ans, n - i, k, i + 1);
+            ans.remove(ans.size() - 1);
+        }
+    }
+
+    public static ArrayList<ArrayList<Integer>> combinationSum3(int k, int n) {
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        solve(res, new ArrayList<>(), n, k, 1);
+        return res;
+    }
+
+    public static void solve(ArrayList<ArrayList<Integer>> res, ArrayList<Integer> ans, int index, int[] nums){
+        res.add(new ArrayList<>(ans));
+        for(int i = index;i<nums.length;i++){
+            if(i > index && nums[i] == nums[i-1]){
+                continue;
+            }
+            ans.add(nums[i]);
+            solve(res, ans, i+1, nums);
+            ans.remove(ans.size() - 1);
+        }
+    }
+
+    public static ArrayList<ArrayList<Integer>> subsets(int nums[]) {
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        Arrays.sort(nums);
+        solve(res, new ArrayList<>(), 0, nums);
+        return res;
     }
 
     public static void main(String[] args) {
@@ -826,8 +883,8 @@ public class Solution_ArraysStrings {
         String str_p33 = "3[a]2[bc]";
         System.out.println("Problem 33: " + decodeString(str_p33));
 
-        int[] spells_p34 = {3,1,2};
-        int[] potions_p34 = {8,5,8 };
+        int[] spells_p34 = { 3, 1, 2 };
+        int[] potions_p34 = { 8, 5, 8 };
         int success_p34 = 16;
         System.out.print("Problem 34: ");
         int[] anser_p34 = successfulPairs(spells_p34, potions_p34, success_p34);
@@ -836,12 +893,12 @@ public class Solution_ArraysStrings {
         }
         System.out.println();
 
-        int[] nums_p25 = {1,2,3,1};
+        int[] nums_p25 = { 1, 2, 3, 1 };
         System.out.println("Problem 35: " + peakElement(nums_p25));
 
-        int[] nums_p36 = {3,6,7,11};
+        int[] nums_p36 = { 3, 6, 7, 11 };
         int h_p36 = 8;
-        System.out.println("Problem 36: "  +minEatingSpeed(nums_p36, h_p36));
+        System.out.println("Problem 36: " + minEatingSpeed(nums_p36, h_p36));
 
         String digits_p37 = "23";
         System.out.println("Problem 37: " + letterCombination(digits_p37));
@@ -859,5 +916,14 @@ public class Solution_ArraysStrings {
 
         int a_p40 = 2, b_p40 = 6, c_p40 = 5;
         System.out.println("Problem 40: " + minFlips(a_p40, b_p40, c_p40));
+
+        int n_p41 = 4, k_p41 = 2;
+        System.out.println("Problem 41: " + combinations(n_p41, k_p41));
+
+        int k_p42 = 3, n_p42 = 7;
+        System.out.println("Problem 42: " + combinationSum3(k_p42, n_p42));
+
+        int[] nums_p43 = {3,1,2,3,2,1};
+        System.out.println("Problem 43: " + subsets(nums_p43));
     }
 }
