@@ -927,3 +927,43 @@ public class Solution_ArraysStrings {
         System.out.println("Problem 43: " + subsets(nums_p43));
     }
 }
+
+// Problem 1: apbqcr
+// Problem 2: ABC
+// Problem 3: true true true false true
+// Problem 4: true
+// Problem 5: AceCreIm
+// Problem 6: blue is sky the
+// Problem 7: 24 12 8 6 
+// Problem 8: true
+// Problem 9: 6
+// Problem 10: 1
+// Problem 11: 3
+// Problem 16: 5
+// Problem 17: 12
+// Problem 18: 11
+// Problem 19: 1 3 12 0 0 
+// Problem 20: true
+// Problem 21: 49
+// Problem 22: 2
+// Problem 23: [[1, 3], [4, 6]]
+// Problem 24: true
+// Problem 25: true
+// Problem 26: 1
+// Problem 27: 5.0
+// Problem 28: 3
+// Problem 29: 6
+// Problem 30: 3
+// Problem 31: [l, e, c, o, e]
+// Problem 32: 10
+// Problem 33: aaabcbc
+// Problem 34: 2 0 2
+// Problem 35: 2
+// Problem 36: 4
+// Problem 37: [ad, ae, af, bd, be, bf, cd, ce, cf]
+// Problem 38: 0 1 1
+// Problem 39: 1
+// Problem 40: 3
+// Problem 41: [[1, 2], [1, 3], [1, 4], [2, 2], [2, 3], [2, 4], [3, 2], [3, 3], [3, 4], [4, 2], [4, 3], [4, 4]]
+// Problem 42: [[1, 2, 4]]
+// Problem 43: [[], [1], [1, 1], [1, 1, 2], [1, 1, 2, 2], [1, 1, 2, 2, 3], [1, 1, 2, 2, 3, 3], [1, 1, 2, 3], [1, 1, 2, 3, 3], [1, 1, 3], [1, 1, 3, 3], [1, 2], [1, 2, 2], [1, 2, 2, 3], [1, 2, 2, 3, 3], [1, 2, 3], [1, 2, 3, 3], [1, 3], [1, 3, 3], [2], [2, 2], [2, 2, 3], [2, 2, 3, 3], [2, 3], [2, 3, 3], [3], [3, 3]]

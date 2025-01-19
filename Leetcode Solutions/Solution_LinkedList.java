@@ -152,3 +152,16 @@ public class Solution_LinkedList {
         System.out.println(maxTwinSum(list.head));
     }
 }
+
+// Problem 12: 
+// 1 3 4 7 1 2 6 
+// 1 3 4 1 2 6 
+// Problem 13: 
+// 1 2 3 4 5 
+// 1 3 5 2 4 
+// Problem 14: 
+// 1 2 3 4 5 
+// 5 4 3 2 1 
+// Problem 15: 
+// 5 4 2 1
+// 6
