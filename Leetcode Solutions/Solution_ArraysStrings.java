@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.PriorityQueue;
+import java.util.Stack;
 
 public class Solution_ArraysStrings {
     public static String mergeAlternateString(String str1, String str2) {
@@ -313,45 +314,45 @@ public class Solution_ArraysStrings {
         return false;
     }
 
-    public static int containerWithMostWater(int[] height){
+    public static int containerWithMostWater(int[] height) {
         int left = 0, right = height.length - 1, answer = 0;
         while (left < right) {
             int width = right - left;
             answer = Math.max(answer, Math.min(height[left], height[right]) * width);
-            if(height[left] <= height[right]){
+            if (height[left] <= height[right]) {
                 left++;
-            }else{
+            } else {
                 right--;
             }
         }
         return answer;
     }
 
-    public static int maxOperations(int[] nums, int k){
+    public static int maxOperations(int[] nums, int k) {
         // O(nlogn)
         // Arrays.sort(nums);
         // int left = 0, right = nums.length - 1, count = 0;
         // while (left < right) {
-        //     if(nums[left] + nums[right] == k){
-        //         left++;
-        //         right--;
-        //         count++;
-        //     }
-        //     else if(nums[left] + nums[right] < k){
-        //         left++;
-        //     }else{
-        //         right--;
-        //     }
+        // if(nums[left] + nums[right] == k){
+        // left++;
+        // right--;
+        // count++;
+        // }
+        // else if(nums[left] + nums[right] < k){
+        // left++;
+        // }else{
+        // right--;
+        // }
         // }
         // return count;
 
         // O(n)
         HashMap<Integer, Integer> map = new HashMap<>();
         int count = 0;
-        for(int i = 0;i<nums.length;i++){
+        for (int i = 0; i < nums.length; i++) {
             int cur = nums[i];
             int complement = k - cur;
-            if(map.getOrDefault(complement, 0) > 0){
+            if (map.getOrDefault(complement, 0) > 0) {
                 map.put(complement, map.get(complement) - 1);
                 count++;
             }
@@ -360,34 +361,34 @@ public class Solution_ArraysStrings {
         return count;
     }
 
-    public static ArrayList<ArrayList<Integer>> allDistinct(int[] nums1, int[] nums2){
+    public static ArrayList<ArrayList<Integer>> allDistinct(int[] nums1, int[] nums2) {
         ArrayList<ArrayList<Integer>> res = new ArrayList<>();
         ArrayList<Integer> distinct1 = new ArrayList<>();
         ArrayList<Integer> distinct2 = new ArrayList<>();
 
         HashSet<Integer> exist1 = new HashSet<>();
-        for(int i : nums1){
+        for (int i : nums1) {
             exist1.add(i);
         }
-        for(int i = 0;i<nums2.length;i++){
-            if(exist1.contains(nums2[i])){
+        for (int i = 0; i < nums2.length; i++) {
+            if (exist1.contains(nums2[i])) {
                 exist1.remove(nums2[i]);
             }
         }
 
         HashSet<Integer> exist2 = new HashSet<>();
-        for(int i : nums2){
+        for (int i : nums2) {
             exist2.add(i);
         }
-        for(int i = 0;i<nums1.length;i++){
-            if(exist2.contains(nums1[i])){
+        for (int i = 0; i < nums1.length; i++) {
+            if (exist2.contains(nums1[i])) {
                 exist2.remove(nums1[i]);
             }
         }
-        for(int i : exist1){
+        for (int i : exist1) {
             distinct1.add(i);
         }
-        for(int i : exist2){
+        for (int i : exist2) {
             distinct2.add(i);
         }
         res.add(new ArrayList<>(distinct1));
@@ -395,14 +396,14 @@ public class Solution_ArraysStrings {
         return res;
     }
 
-    public static boolean uniqueOccurences(int[] arr){
+    public static boolean uniqueOccurences(int[] arr) {
         HashMap<Integer, Integer> map = new HashMap<>();
-        for(int i : arr){
-            map.put(i, map.getOrDefault(i, 0)+1);
+        for (int i : arr) {
+            map.put(i, map.getOrDefault(i, 0) + 1);
         }
         HashSet<Integer> set = new HashSet<>();
-        for(int i : map.values()){
-            if(set.contains(i)){
+        for (int i : map.values()) {
+            if (set.contains(i)) {
                 return false;
             }
             set.add(i);
@@ -410,20 +411,298 @@ public class Solution_ArraysStrings {
         return true;
     }
 
-    public static boolean areStringsClose(String str1, String str2){
+    public static boolean areStringsClose(String str1, String str2) {
         HashMap<Character, Integer> map1 = new HashMap<>();
         HashMap<Character, Integer> map2 = new HashMap<>();
-        for(int i = 0;i<str1.length();i++){
+        for (int i = 0; i < str1.length(); i++) {
             map1.put(str1.charAt(i), map1.getOrDefault(str1.charAt(i), 0) + 1);
         }
-        for(int i = 0;i<str2.length();i++){
+        for (int i = 0; i < str2.length(); i++) {
             map2.put(str2.charAt(i), map2.getOrDefault(str2.charAt(i), 0) + 1);
+        }
+        if (!map1.keySet().equals(map2.keySet())) {
+            return false;
         }
         ArrayList<Integer> list1 = new ArrayList<>(map1.values());
         ArrayList<Integer> list2 = new ArrayList<>(map2.values());
         Collections.sort(list1);
         Collections.sort(list2);
         return list1.equals(list2);
+    }
+
+    public static int equalRowAndCol(int[][] grid) {
+        int count = 0;
+        HashMap<String, Integer> map = new HashMap<>();
+        for (int i = 0; i < grid.length; i++) {
+            String temp = "";
+            for (int j = 0; j < grid.length; j++) {
+                temp += Integer.toString(grid[i][j]);
+            }
+            map.put(temp, map.getOrDefault(temp, 0) + 1);
+        }
+        for (int j = 0; j < grid.length; j++) {
+            String col = "";
+            for (int i = 0; i < grid.length; i++) {
+                col += Integer.toString(grid[i][j]);
+            }
+            if (map.containsKey(col)) {
+                count += map.get(col);
+            }
+        }
+        return count;
+    }
+
+    public static double maxAvg(int[] nums, int k) {
+        int sum = 0;
+        double avg = 0.0, maxAvg = 0.0;
+        for (int i = 0; i < k; i++) {
+            sum += nums[i];
+        }
+        avg = (double) sum / k;
+        maxAvg = avg;
+        int j = 0;
+        for (int i = k; i < nums.length; i++) {
+            sum += nums[i] - nums[j++];
+            avg = (double) sum / k;
+            maxAvg = Math.max(maxAvg, avg);
+        }
+        return maxAvg;
+    }
+
+    public static boolean isVowel(char ch) {
+        return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
+    }
+
+    public static int maxVowel(String str, int k) {
+        int count = 0;
+        for (int i = 0; i < k; i++) {
+            if (isVowel(str.charAt(i))) {
+                count++;
+            }
+        }
+        int maxCount = count;
+        int j = 0;
+        for (int i = k; i < str.length(); i++) {
+            if (isVowel(str.charAt(i))) {
+                count += 1;
+            }
+            if (isVowel(str.charAt(j))) {
+                count -= 1;
+            }
+            maxCount = Math.max(maxCount, count);
+            j++;
+        }
+        return maxCount;
+    }
+
+    public static int maxOne3(int[] nums, int k) {
+        int max = 0, left = 0, right = 0, numZeros = 0;
+        while (right < nums.length) {
+            if (nums[right] == 0) {
+                numZeros++;
+            }
+            while (numZeros > k) {
+                if (nums[left] == 0) {
+                    numZeros--;
+                }
+                left++;
+            }
+            max = Math.max(max, right - left + 1);
+            right++;
+        }
+        return max;
+    }
+
+    public static int longestSubarray(int[] nums) {
+        int zero = 0, longestWindow = 0, start = 0;
+        for (int i = 0; i < nums.length; i++) {
+            zero += nums[i] == 0 ? 1 : 0;
+            while (zero > 1) {
+                zero -= nums[start] == 0 ? 1 : 0;
+                start++;
+            }
+            longestWindow = Math.max(longestWindow, i - start);
+        }
+        return longestWindow;
+    }
+
+    public static String removeStars(String str) {
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) != '*') {
+                stack.add(str.charAt(i));
+            } else {
+                if (!stack.isEmpty()) {
+                    stack.pop();
+                }
+            }
+        }
+        return stack.toString();
+    }
+
+    public static int[] asteroidCollision(int[] asteroids) {
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i < asteroids.length; i++) {
+            boolean flag = true;
+            while (!stack.isEmpty() && (stack.peek() > 0 && asteroids[i] < 0)) {
+                if (Math.abs(stack.peek()) < Math.abs(asteroids[i])) {
+                    stack.pop();
+                    continue;
+                } else if (Math.abs(stack.peek()) == Math.abs(asteroids[i])) {
+                    stack.pop();
+                }
+                flag = false;
+                break;
+            }
+            if (flag) {
+                stack.push(asteroids[i]);
+            }
+        }
+        int[] answer = new int[stack.size()];
+        for (int i = stack.size() - 1; i >= 0; i--) {
+            answer[i] = stack.peek();
+            stack.pop();
+        }
+        return answer;
+    }
+
+    public static String decodeString(String str) {
+        Stack<Integer> stack = new Stack<>();
+        Stack<StringBuilder> stringStack = new Stack<>();
+        StringBuilder currentString = new StringBuilder();
+        int k = 0;
+        for (char ch : str.toCharArray()) {
+            if (Character.isDigit(ch)) {
+                k = k * 10 + ch - '0';
+            } else if (ch == '[') {
+                stack.push(k);
+                stringStack.push(currentString);
+                currentString = new StringBuilder();
+                k = 0;
+            } else if (ch == ']') {
+                StringBuilder decodeString = stringStack.pop();
+                for (int i = stack.pop(); i > 0; i--) {
+                    decodeString.append(currentString);
+                }
+                currentString = decodeString;
+            } else {
+                currentString.append(ch);
+            }
+        }
+        return currentString.toString();
+    }
+
+    public static int[] successfulPairs(int[] spells, int[] potions, int success){
+        int[] ans = new int[spells.length];
+        // for(int i = 0;i<spells.length;i++){
+        //     int count = 0;
+        //     for(int j = 0;j<potions.length;j++){
+        //         if(spells[i] * potions[j] >= success){
+        //             count++;
+        //         }
+        //     }
+        //     ans[i] = count;
+        // }
+        Arrays.sort(potions);
+        for(int i = 0;i<spells.length;i++){
+            int left = 0,right = potions.length - 1;
+            while (left <= right) {
+                int mid = (left + right) / 2;
+                if(potions[mid] * spells[i] >= success){
+                    right = mid - 1;
+                }else{
+                    left = mid + 1;
+                }
+            }
+            ans[i] = potions.length - left;
+        }
+        return ans;
+    }
+
+    public static int search(int[] nums, int left, int right){
+        if(left == right) return left;
+        int mid = (left + right) / 2;
+        if(nums[mid] > nums[mid + 1])
+            return search(nums, left, mid);
+        return search(nums, mid+1, right);
+    }
+
+    public static int peakElement(int[] nums){
+        return search(nums, 0, nums.length - 1);
+    }
+
+    public static int minEatingSpeed(int piles[], int h){
+        int left = 1, right = 1;
+        for(int pile : piles){
+            right = Math.max(right, pile);
+        }
+
+        while (left < right) {
+            int middle = (left + right) / 2;
+            int hrSpent = 0;
+            for(int pile : piles){
+                hrSpent += Math.ceil((double)pile / middle);
+            }
+            if(hrSpent <= h){
+                right = middle;
+            }else{
+                left = middle + 1;
+            }
+        }
+        return right;
+    }
+
+    public static void solve(String digits, ArrayList<String> answers, StringBuilder current, int index, HashMap<Character, String> dial){
+        if (index == digits.length()) {
+            answers.add(current.toString());
+            return;
+        }
+        char digit = digits.charAt(index);
+        String letters = dial.get(digit);
+
+        for (char letter : letters.toCharArray()) {
+            current.append(letter); 
+            solve(digits, answers, current, index + 1, dial); 
+            current.deleteCharAt(current.length() - 1); 
+        }
+    }
+
+    public static ArrayList<String> letterCombination(String digits){
+        ArrayList<String> ans = new ArrayList<>();
+        if(digits.length() == 0){
+            return ans;
+        }
+        HashMap<Character, String> dial = new HashMap<>();
+        dial.put('2', "abc");
+        dial.put('3', "def");
+        dial.put('4', "ghi");
+        dial.put('5', "jkl");
+        dial.put('6', "mno");
+        dial.put('7', "pqrs");
+        dial.put('8', "tuv");
+        dial.put('9', "wxyz");
+        solve(digits, ans, new StringBuilder(), 0, dial);
+        return ans;
+    }
+
+    public static int[] binaryRepresentation(int n) {
+        int[] ans = new int[n + 1];
+        for (int x = 1; x <= n; ++x) {
+            ans[x] = ans[x & (x - 1)] + 1;
+        }
+        return ans;
+    }
+
+    public static int singleNumber(int[] nums) {
+        int answer = 0;
+        for (int i : nums) {
+            answer = answer ^ i;
+        }
+        return answer;
+    }
+
+    public static int minFlips(int a, int b, int c) {
+        return Integer.bitCount((a | b) ^ c) + Integer.bitCount(a & b & ((a | b) ^ c));
     }
 
     public static void main(String[] args) {
@@ -497,22 +776,88 @@ public class Solution_ArraysStrings {
         String str2_p20 = "ahbgdc";
         System.out.println("Problem 20: " + isSubsequence(str1_p20, str2_p20));
 
-        int[] height_p21 = {1,8,6,2,5,4,8,3,7};
+        int[] height_p21 = { 1, 8, 6, 2, 5, 4, 8, 3, 7 };
         System.out.println("Problem 21: " + containerWithMostWater(height_p21));
 
-        int[] nums_p22 = {1,2,3,4};
+        int[] nums_p22 = { 1, 2, 3, 4 };
         int k_22 = 5;
         System.out.println("Problem 22: " + maxOperations(nums_p22, k_22));
 
-        int[] nums1_p23 = {1,2,3};
-        int[] nums2_p23 = {2,4,6};
+        int[] nums1_p23 = { 1, 2, 3 };
+        int[] nums2_p23 = { 2, 4, 6 };
         ArrayList<ArrayList<Integer>> answer_p23 = allDistinct(nums1_p23, nums2_p23);
-        System.out.println("Problem 23: "+answer_p23);
+        System.out.println("Problem 23: " + answer_p23);
 
-        int[] arr_p24 = {1,2,2,3,3,3};
+        int[] arr_p24 = { 1, 2, 2, 3, 3, 3 };
         System.out.println("Problem 24: " + uniqueOccurences(arr_p24));
 
         String str1_p25 = "abc", str2_p25 = "bca";
         System.out.println("Problem 25: " + areStringsClose(str1_p25, str2_p25));
+
+        int[][] grid_p26 = { { 3, 2, 1 }, { 1, 7, 6 }, { 2, 7, 7 } };
+        System.out.println("Problem 26: " + equalRowAndCol(grid_p26));
+
+        int[] nums_p27 = { 5 };
+        int k_p27 = 1;
+        System.out.println("Problem 27: " + maxAvg(nums_p27, k_p27));
+
+        String str_p28 = "abciiidef";
+        int k_p28 = 3;
+        System.out.println("Problem 28: " + maxVowel(str_p28, k_p28));
+
+        int[] nums_p29 = { 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0 };
+        int k_p29 = 2;
+        System.out.println("Problem 29: " + maxOne3(nums_p29, k_p29));
+
+        int[] nums_p30 = { 1, 1, 0, 1 };
+        System.out.println("Problem 30: " + longestSubarray(nums_p30));
+
+        String str_p31 = "leet**cod*e";
+        System.out.println("Problem 31: " + removeStars(str_p31));
+
+        int[] asteroids_p32 = { 10, 2, -5 };
+        System.out.print("Problem 32: ");
+        int[] answer_p32 = asteroidCollision(asteroids_p32);
+        for (int i : answer_p32) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+
+        String str_p33 = "3[a]2[bc]";
+        System.out.println("Problem 33: " + decodeString(str_p33));
+
+        int[] spells_p34 = {3,1,2};
+        int[] potions_p34 = {8,5,8 };
+        int success_p34 = 16;
+        System.out.print("Problem 34: ");
+        int[] anser_p34 = successfulPairs(spells_p34, potions_p34, success_p34);
+        for (int i : anser_p34) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+
+        int[] nums_p25 = {1,2,3,1};
+        System.out.println("Problem 35: " + peakElement(nums_p25));
+
+        int[] nums_p36 = {3,6,7,11};
+        int h_p36 = 8;
+        System.out.println("Problem 36: "  +minEatingSpeed(nums_p36, h_p36));
+
+        String digits_p37 = "23";
+        System.out.println("Problem 37: " + letterCombination(digits_p37));
+
+        int n_p38 = 2;
+        System.out.print("Problem 38: ");
+        int[] anser_p38 = binaryRepresentation(n_p38);
+        for (int i : anser_p38) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+
+        int[] nums_p39 = { 2, 2, 1 };
+        System.out.println("Problem 39: " + singleNumber(nums_p39));
+
+        int a_p40 = 2, b_p40 = 6, c_p40 = 5;
+        System.out.println("Problem 40: " + minFlips(a_p40, b_p40, c_p40));
     }
 }
